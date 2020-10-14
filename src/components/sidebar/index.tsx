@@ -7,7 +7,7 @@ const Sidebar = (): JSX.Element => {
     return (
         <SidebarElement>
             {Object.values(RouterPaths).map(routerPath => (
-                <SidebarLink routerPath={routerPath} />
+                <SidebarLink key={routerPath.name} routerPath={routerPath} />
             ))}
         </SidebarElement>
     );
