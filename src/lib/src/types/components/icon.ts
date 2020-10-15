@@ -1,7 +1,7 @@
 import { HTMLMotionProps } from 'framer-motion';
-import { BaseComponentProps } from './component';
+import { ThemedComponentProps } from './themed-component';
 
-export interface IconProps extends BaseComponentProps, HTMLMotionProps<'div'> {
+export interface IconProps extends ThemedComponentProps, HTMLMotionProps<'div'> {
     name: string;
     height?: string;
     width?: string;

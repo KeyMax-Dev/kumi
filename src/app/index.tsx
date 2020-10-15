@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { RootStore } from './redux';
+import { ThemeProvider } from 'styled-components';
+import { getGlobalTheme, GlobalStyle } from 'lib';
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={RootStore}>
-            <App />
+            <ThemeProvider theme={getGlobalTheme}>
+                <App />
+                <GlobalStyle />
+            </ThemeProvider>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

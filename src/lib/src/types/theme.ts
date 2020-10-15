@@ -22,11 +22,11 @@ interface Transitions {
     slow: string;
 }
 
-export type Theme = {
+export interface Theme {
     colors: { [key: string]: Color };
     borderRadius: string;
     boxShadow: BoxShadow;
     font: { [key: string]: HeadingFont };
     transitions: Transitions;
     defaultIconSize: string;
-};
+}

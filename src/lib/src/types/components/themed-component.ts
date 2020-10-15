@@ -1,4 +1,4 @@
-export interface BaseComponentProps {
+export interface ThemedComponentProps {
     color?: string;
     invert?: boolean;
 }

@@ -8,8 +8,7 @@ export const SidebarElement = styled.nav`
     bottom: 0;
     width: 250px;
 
-    background-color: #fff;
-    border-right: 1px solid #1eca57;
+    border-right: 1px solid ${({ theme }) => theme.colors.primary.principal};
 
     display: flex;
     flex-direction: column;
@@ -19,10 +18,10 @@ export const SidebarElement = styled.nav`
 
 export const SidebarLinkElement = styled(NavLink)`
     padding: 10px;
-    color: #000;
+    color: ${({ theme }) => theme.colors.secondary.principal};
 
     &.kumi-sidebar-link-active {
         padding-left: 30px;
-        color: #1eca57;
+        color: ${({ theme }) => theme.colors.primary.principal};
     }
 `;

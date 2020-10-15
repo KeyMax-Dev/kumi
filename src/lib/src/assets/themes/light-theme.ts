@@ -2,8 +2,8 @@ import { Theme } from 'lib/src/types';
 
 const LightTheme: Theme = {
     colors: {
-        primary: { principal: '#000000', contrast: '#FFFFFF' },
-        secondary: { principal: '#BB86FC', contrast: '#6200EE' },
+        primary: { principal: '#1eca57', contrast: '#FFFFFF' },
+        secondary: { principal: '#000000', contrast: '#FFFFFF' },
         danger: { principal: '#D40000', contrast: '#FFFFFF' },
         success: { principal: '#00D415', contrast: '#000000' },
     },
@@ -19,28 +19,38 @@ const LightTheme: Theme = {
         normal: '0 2px 10px rgba(0,0,0,0.3)',
     },
     font: {
+        body: {
+            fontSize: '1rem',
+            fontWeight: 'normal',
+            lineHeight: '1rem',
+            textAlign: 'left',
+            fontFamily: "'Ubuntu Mono', monospace",
+        },
         h1: {
             fontSize: '2rem',
             fontWeight: 600,
             lineHeight: '1.8rem',
             textAlign: 'center',
+            fontFamily: "'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif",
         },
         h2: {
             fontSize: '1.5rem',
             fontWeight: 500,
             lineHeight: '1.8rem',
             textAlign: 'center',
+            fontFamily: "'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif",
         },
         input: {
-            fontSize: '1.2rem',
+            fontSize: '1rem',
             fontWeight: 400,
             textAlign: 'left',
         },
         p: {
-            fontSize: '1.2rem',
-            fontWeight: 400,
-            lineHeight: '1.2rem',
+            fontSize: '1rem',
+            fontWeight: 'normal',
+            lineHeight: '1rem',
             textAlign: 'left',
+            fontFamily: "'Ubuntu Mono', monospace",
         },
     },
 };

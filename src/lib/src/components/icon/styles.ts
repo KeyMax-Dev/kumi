@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { getGlobalTheme } from 'lib/src/assets/themes';
 import { motion } from 'framer-motion';
 import { IconProps } from 'lib/src/types/components/icon';
 
 export const IconElement = styled(motion.div)<IconProps>`
-    width: ${({ width }): string => width || getGlobalTheme().defaultIconSize};
-    height: ${({ height }): string => height || getGlobalTheme().defaultIconSize};
+    width: ${({ theme, width }): string => width || theme.defaultIconSize};
+    height: ${({ theme, height }): string => height || theme.defaultIconSize};
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -15,9 +14,9 @@ export const IconElement = styled(motion.div)<IconProps>`
         height: 100%;
     }
     path {
-        fill: ${(props): string =>
-            props.color
-                ? getGlobalTheme().colors[props.color][props.invert ? 'contrast' : 'principal']
-                : getGlobalTheme().colors['primary'][props.invert ? 'contrast' : 'principal']};
+        fill: ${({ theme, color, invert }): string =>
+            color
+                ? theme.colors[color][invert ? 'contrast' : 'principal']
+                : theme.colors['primary'][invert ? 'contrast' : 'principal']};
     }
 `;
