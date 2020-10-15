@@ -15,8 +15,6 @@ export const IconElement = styled(motion.div)<IconProps>`
     }
     path {
         fill: ${({ theme, color, invert }): string =>
-            color
-                ? theme.colors[color][invert ? 'contrast' : 'principal']
-                : theme.colors['primary'][invert ? 'contrast' : 'principal']};
+            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
     }
 `;
