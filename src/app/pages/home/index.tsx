@@ -1,5 +1,5 @@
+import Page from 'app/components/page';
 import React from 'react';
-import Page from '../../components/page';
 
 const Strings = {
     Heading: {

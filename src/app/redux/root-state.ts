@@ -1,4 +1,4 @@
-import SidebarState from '../types/sidebar-state';
+import SidebarState from 'app/types/sidebar-state';
 
 export interface ReduxState {
     sidebarState: Partial<SidebarState>;

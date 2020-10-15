@@ -1,5 +1,5 @@
 import React from 'react';
-import RouterPath from '../../types/router-path';
+import RouterPath from 'app/types/router-path';
 import { SidebarLinkElement } from './styles';
 
 interface SidebarLinkProps {

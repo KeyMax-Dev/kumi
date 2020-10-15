@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import SidebarStateActions from '../../redux/actions/sidebar-state-actions';
-import { ReduxState } from '../../redux/root-state';
-import SidebarState from '../../types/sidebar-state';
+import SidebarStateActions from 'app/redux/actions/sidebar-state-actions';
+import { ReduxState } from 'app/redux/root-state';
+import SidebarState from 'app/types/sidebar-state';
 
 interface SidebarController {
     state: SidebarState;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouterPaths } from '../../utils/constants';
+import { RouterPaths } from 'app/utils/constants';
 import SidebarLink from './sidebar-link';
 import { SidebarElement } from './styles';
 

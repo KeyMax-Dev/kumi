@@ -1,4 +1,4 @@
-import RouterPath from '../types/router-path';
+import RouterPath from 'app/types/router-path';
 
 type RouterPathKeys = 'Home' | 'Icons';
 
