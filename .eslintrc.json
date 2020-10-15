@@ -25,9 +25,6 @@
     "rules": {
         "prettier/prettier": "error",
         "react/prop-types": "off",
-        "@typescript-eslint/explicit-function-return-type": [
-            "error",
-            { "allowExpressions": true }
-        ]
+        "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }]
     }
 }

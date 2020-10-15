@@ -19,6 +19,7 @@ export const SidebarElement = styled.nav`
 
 export const SidebarLinkElement = styled(NavLink)`
     padding: 10px;
+    color: #000;
 
     &.kumi-sidebar-link-active {
         padding-left: 30px;

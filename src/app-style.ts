@@ -10,8 +10,7 @@ export const Main = styled.main<MainProps>`
     flex-direction: column;
     align-items: center;
 
-    width: ${({ sidebarState: { opened } }) =>
-        opened ? 'calc(100% - 250px)' : '100%'};
+    width: ${({ sidebarState: { opened } }) => (opened ? 'calc(100% - 250px)' : '100%')};
 
     margin-left: ${({ sidebarState: { opened } }) => (opened ? '250px' : '0')};
 `;

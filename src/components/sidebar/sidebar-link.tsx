@@ -9,6 +9,7 @@ interface SidebarLinkProps {
 const SidebarLink = ({ routerPath }: SidebarLinkProps): JSX.Element => {
     return (
         <SidebarLinkElement
+            exact={routerPath.path === '/'}
             to={routerPath.path}
             activeClassName="kumi-sidebar-link-active"
         >

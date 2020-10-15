@@ -10,9 +10,7 @@ interface SidebarController {
 }
 
 const useSidebarController = (): SidebarController => {
-    const state = useSelector<ReduxState, SidebarState>(
-        state => state.sidebarState as SidebarState
-    );
+    const state = useSelector<ReduxState, SidebarState>(state => state.sidebarState as SidebarState);
 
     const dispatch = useDispatch();
 

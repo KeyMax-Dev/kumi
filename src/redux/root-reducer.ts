@@ -17,10 +17,7 @@ const mergeState = (before: any, after: any): any => {
     return Array.isArray(before) ? before : { ...before };
 };
 
-export const rootReducer: Reducer<ReduxState, ReduxAction> = (
-    state = InitialState,
-    action
-) => {
+export const rootReducer: Reducer<ReduxState, ReduxAction> = (state = InitialState, action) => {
     if (!action.payload) {
         return state;
     } else {
