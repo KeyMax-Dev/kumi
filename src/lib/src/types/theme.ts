@@ -22,7 +22,7 @@ interface Transitions {
     slow: string;
 }
 
-type Theme = {
+export type Theme = {
     colors: { [key: string]: Color };
     borderRadius: string;
     boxShadow: BoxShadow;
@@ -30,5 +30,3 @@ type Theme = {
     transitions: Transitions;
     defaultIconSize: string;
 };
-
-export default Theme;

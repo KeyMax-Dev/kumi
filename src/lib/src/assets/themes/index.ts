@@ -1,4 +1,4 @@
-import Theme from './../../@types/theme';
+import { Theme } from 'lib/src/types';
 import LightTheme from './light-theme';
 import DarkTheme from './dark-theme';
 
