@@ -52,6 +52,13 @@ const DarkTheme: Theme = {
             textAlign: 'left',
             fontFamily: "'Ubuntu Mono', monospace",
         },
+        button: {
+            fontSize: '1.2rem',
+            fontWeight: 500,
+            lineHeight: '1.2rem',
+            textAlign: 'center',
+            fontFamily: "'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif",
+        },
     },
 };
 
