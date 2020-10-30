@@ -1,6 +1,7 @@
 import React from 'react';
 import Page from 'app/components/page';
 import { Button } from 'lib';
+import { ComponentsContainer } from 'app/components/components-container';
 
 const Strings = {
     Heading: {
@@ -16,14 +17,27 @@ const ButtonsPage = (): JSX.Element => {
         <Page>
             <h1>{Strings.Heading.MainTitle}</h1>
             <h2>{Strings.Heading.SolidButtons}</h2>
-            <Button>Solid</Button>
-            <Button disabled>Solid Disabled</Button>
+            <ComponentsContainer>
+                <Button>Solid</Button>
+                <Button disabled>Solid Disabled</Button>
+            </ComponentsContainer>
             <h2>{Strings.Heading.OutlineButtons}</h2>
-            <Button styleType="outline">Outline</Button>
-            <Button styleType="outline" disabled>
-                Outline Disabled
-            </Button>
+            <ComponentsContainer>
+                <Button styleType="outline">Outline</Button>
+                <Button styleType="outline" disabled>
+                    Outline Disabled
+                </Button>
+            </ComponentsContainer>
             <h2>{Strings.Heading.IconButtons}</h2>
+            <ComponentsContainer>
+                <Button styleType="icon" icon="account"></Button>
+                <Button styleType="icon" icon="cog">
+                    Configurações
+                </Button>
+                <Button styleType="icon" icon="account" disabled>
+                    Account
+                </Button>
+            </ComponentsContainer>
         </Page>
     );
 };

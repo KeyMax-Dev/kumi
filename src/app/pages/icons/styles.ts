@@ -8,9 +8,3 @@ export const IconContainerElement = styled.div`
 
     padding: 15px;
 `;
-
-export const IconsListElement = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-`;
