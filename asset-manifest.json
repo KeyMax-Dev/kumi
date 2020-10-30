@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/kumi/static/js/main.fc7fc898.chunk.js",
-    "main.js.map": "/kumi/static/js/main.fc7fc898.chunk.js.map",
+    "main.js": "/kumi/static/js/main.80362037.chunk.js",
+    "main.js.map": "/kumi/static/js/main.80362037.chunk.js.map",
     "runtime-main.js": "/kumi/static/js/runtime-main.e727a0ae.js",
     "runtime-main.js.map": "/kumi/static/js/runtime-main.e727a0ae.js.map",
-    "static/js/2.2511d379.chunk.js": "/kumi/static/js/2.2511d379.chunk.js",
-    "static/js/2.2511d379.chunk.js.map": "/kumi/static/js/2.2511d379.chunk.js.map",
+    "static/js/2.908a9857.chunk.js": "/kumi/static/js/2.908a9857.chunk.js",
+    "static/js/2.908a9857.chunk.js.map": "/kumi/static/js/2.908a9857.chunk.js.map",
     "index.html": "/kumi/index.html",
-    "precache-manifest.b88a4f381c5bb72009147d03516fb67d.js": "/kumi/precache-manifest.b88a4f381c5bb72009147d03516fb67d.js",
+    "precache-manifest.af8a37f106f762cccef1887820c9dad2.js": "/kumi/precache-manifest.af8a37f106f762cccef1887820c9dad2.js",
     "service-worker.js": "/kumi/service-worker.js",
-    "static/js/2.2511d379.chunk.js.LICENSE.txt": "/kumi/static/js/2.2511d379.chunk.js.LICENSE.txt"
+    "static/js/2.908a9857.chunk.js.LICENSE.txt": "/kumi/static/js/2.908a9857.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e727a0ae.js",
-    "static/js/2.2511d379.chunk.js",
-    "static/js/main.fc7fc898.chunk.js"
+    "static/js/2.908a9857.chunk.js",
+    "static/js/main.80362037.chunk.js"
   ]
 }
