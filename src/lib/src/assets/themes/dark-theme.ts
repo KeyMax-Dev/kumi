@@ -41,9 +41,10 @@ const DarkTheme: Theme = {
             fontFamily: "'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif",
         },
         input: {
-            fontSize: '1rem',
+            fontSize: '1.2rem',
             fontWeight: 400,
             textAlign: 'left',
+            fontFamily: "'Ubuntu Mono', monospace",
         },
         p: {
             fontSize: '1rem',

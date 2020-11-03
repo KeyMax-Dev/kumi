@@ -1,40 +1,47 @@
 import React from 'react';
 import { HTMLMotionProps } from 'framer-motion';
-import { ThemedComponentProps } from 'lib/src/types';
+import { StyleTypedComponentProps, ThemedComponentProps } from 'lib/src/types';
 import { IconButtonElement, OutlineButtonElement, SolidButtonElement } from './styles';
 import Icon from '../icon';
+import { createClassName } from 'lib/src/utils';
 
 type ButtonStyleTypes = 'solid' | 'outline' | 'icon';
 
-interface ButtonProps extends ThemedComponentProps, HTMLMotionProps<'button'> {
-    styleType?: ButtonStyleTypes;
+interface ButtonProps
+    extends ThemedComponentProps,
+        StyleTypedComponentProps<ButtonStyleTypes>,
+        HTMLMotionProps<'button'> {
     icon?: string;
     iconSize?: string;
     children?: string;
 }
 
-const Button = ({ styleType = 'solid', icon, iconSize, children, ...props }: ButtonProps): JSX.Element => {
+const Button = ({ styleType = 'solid', icon, iconSize, children, className, ...props }: ButtonProps): JSX.Element => {
     switch (styleType) {
         case 'icon':
             if (!icon) {
                 throw new Error('Icon button must have an icon');
             }
             return (
-                <IconButtonElement iconSize={iconSize} {...props}>
+                <IconButtonElement
+                    iconSize={iconSize}
+                    {...props}
+                    className={createClassName(['button', 'icon'], className)}
+                >
                     <Icon name={icon} width={iconSize} height={iconSize} />
                     {children && <span>{children}</span>}
                 </IconButtonElement>
             );
         case 'outline':
             return (
-                <OutlineButtonElement {...props}>
+                <OutlineButtonElement {...props} className={createClassName(['button', 'outline'], className)}>
                     {icon && <Icon name={icon} width={iconSize} height={iconSize} />}
                     <span>{children}</span>
                 </OutlineButtonElement>
             );
         default:
             return (
-                <SolidButtonElement {...props}>
+                <SolidButtonElement {...props} className={createClassName(['button', 'solid'], className)}>
                     {icon && <Icon name={icon} width={iconSize} height={iconSize} />}
                     <span>{children}</span>
                 </SolidButtonElement>

@@ -11,4 +11,6 @@ export const ComponentsContainer = styled.div`
     margin: 15px 0;
     border: 1px solid ${({ theme }) => theme.colors.primary.principal};
     border-radius: ${({ theme }) => theme.borderRadius};
+
+    overflow: auto;
 `;
