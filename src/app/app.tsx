@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import { Main } from './app-style';
 import Sidebar from './components/sidebar';
 import useSidebarController from './hooks/sidebar-controller';
@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
     const sidebarController = useSidebarController();
 
     return (
-        <Router basename="/kumi/">
+        <HashRouter basename="/">
             <Sidebar />
             <Main sidebarState={sidebarController.state}>
                 <Switch>
@@ -23,7 +23,7 @@ const App = (): JSX.Element => {
                     <Route component={InputsPage} path={RouterPaths.Inputs.path} />
                 </Switch>
             </Main>
-        </Router>
+        </HashRouter>
     );
 };
 
