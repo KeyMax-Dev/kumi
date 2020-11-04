@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const SidebarElement = styled.nav`
+export const SidebarElement = styled.div`
     position: fixed;
     left: 0;
     top: 0;
@@ -24,4 +24,19 @@ export const SidebarLinkElement = styled(NavLink)`
         padding-left: 30px;
         color: ${({ theme }) => theme.colors.primary.principal};
     }
+`;
+
+export const SidebarNavElement = styled.nav`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: auto;
+`;
+
+export const SidebarThemeTogglerContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;
 `;

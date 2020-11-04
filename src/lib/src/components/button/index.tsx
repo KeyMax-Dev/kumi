@@ -16,7 +16,15 @@ interface ButtonProps
     children?: string;
 }
 
-const Button = ({ styleType = 'solid', icon, iconSize, children, className, ...props }: ButtonProps): JSX.Element => {
+const Button = ({
+    styleType = 'solid',
+    icon,
+    iconSize,
+    children,
+    className,
+    invert,
+    ...props
+}: ButtonProps): JSX.Element => {
     switch (styleType) {
         case 'icon':
             if (!icon) {
@@ -28,21 +36,21 @@ const Button = ({ styleType = 'solid', icon, iconSize, children, className, ...p
                     {...props}
                     className={createClassName(['button', 'icon'], className)}
                 >
-                    <Icon name={icon} width={iconSize} height={iconSize} />
+                    <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />
                     {children && <span>{children}</span>}
                 </IconButtonElement>
             );
         case 'outline':
             return (
                 <OutlineButtonElement {...props} className={createClassName(['button', 'outline'], className)}>
-                    {icon && <Icon name={icon} width={iconSize} height={iconSize} />}
+                    {icon && <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />}
                     <span>{children}</span>
                 </OutlineButtonElement>
             );
         default:
             return (
                 <SolidButtonElement {...props} className={createClassName(['button', 'solid'], className)}>
-                    {icon && <Icon name={icon} width={iconSize} height={iconSize} />}
+                    {icon && <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />}
                     <span>{children}</span>
                 </SolidButtonElement>
             );

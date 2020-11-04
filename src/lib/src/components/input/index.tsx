@@ -30,7 +30,7 @@ const Input = ({
     label,
     ...props
 }: InputProps): JSX.Element => {
-    const Content = (): JSX.Element => (
+    const commonContent: JSX.Element = (
         <>
             {label && <InputLabelElement>{label}</InputLabelElement>}
             {iconLeft && <Icon name={iconLeft} color={color} width="25px" height="25px" />}
@@ -48,7 +48,7 @@ const Input = ({
                     {...containerProps}
                     className={createClassName(['input', 'container', 'outline'], containerProps?.className)}
                 >
-                    <Content />
+                    {commonContent}
                 </OutlineInputContainer>
             );
         case 'solid':
@@ -59,7 +59,7 @@ const Input = ({
                     {...containerProps}
                     className={createClassName(['input', 'container', 'solid'], containerProps?.className)}
                 >
-                    <Content />
+                    {commonContent}
                 </SolidInputContainer>
             );
         default:
@@ -70,7 +70,7 @@ const Input = ({
                     {...containerProps}
                     className={createClassName(['input', 'container', 'downline'], containerProps?.className)}
                 >
-                    <Content />
+                    {commonContent}
                 </DownlineInputContainer>
             );
     }

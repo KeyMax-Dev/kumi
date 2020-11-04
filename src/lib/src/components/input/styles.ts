@@ -74,7 +74,7 @@ export const OutlineInputContainer = styled(InputContainer)`
 export const SolidInputContainer = styled(InputContainer)`
     padding: 0 5px;
     background-color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+        theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}26;
 
     border-radius: ${({ theme }) => theme.borderRadius};
     color: ${({ theme, color, invert }): string =>
@@ -82,7 +82,7 @@ export const SolidInputContainer = styled(InputContainer)`
 
     &:focus-within {
         background-color: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}26;
 
         color: ${({ theme, color, invert }): string =>
             theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};

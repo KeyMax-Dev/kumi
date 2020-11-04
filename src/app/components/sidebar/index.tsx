@@ -1,14 +1,13 @@
 import React from 'react';
-import { RouterPaths } from 'app/utils/constants';
-import SidebarLink from './sidebar-link';
 import { SidebarElement } from './styles';
+import SidebarList from './sidebar-list';
+import SidebarThemeToggler from './sidebar-theme-toggler';
 
 const Sidebar = (): JSX.Element => {
     return (
         <SidebarElement>
-            {Object.values(RouterPaths).map(routerPath => (
-                <SidebarLink key={routerPath.name} routerPath={routerPath} />
-            ))}
+            <SidebarList />
+            <SidebarThemeToggler />
         </SidebarElement>
     );
 };
