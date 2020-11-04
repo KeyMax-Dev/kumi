@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e081cbdb00c9e42967e0e569de2a97b3",
+    "revision": "59d2d45c06cfc1fd6b261eda9623f77a",
     "url": "/kumi/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kumi/static/js/2.0877e3e9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "be2137bbabd70a5581d3",
-    "url": "/kumi/static/js/main.916620e3.chunk.js"
+    "revision": "486314fe070975b32242",
+    "url": "/kumi/static/js/main.55020afd.chunk.js"
   },
   {
     "revision": "c61741c6b94b963a74e3",
