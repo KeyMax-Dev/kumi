@@ -19,11 +19,17 @@ const ButtonsPage = (): JSX.Element => {
             <h2>{Strings.Heading.SolidButtons}</h2>
             <ComponentsContainer>
                 <Button>Solid</Button>
+                <Button invert icon="cog">
+                    Solid Invert
+                </Button>
                 <Button disabled>Solid Disabled</Button>
             </ComponentsContainer>
             <h2>{Strings.Heading.OutlineButtons}</h2>
             <ComponentsContainer>
                 <Button styleType="outline">Outline</Button>
+                <Button invert styleType="outline" icon="cog">
+                    Outline
+                </Button>
                 <Button styleType="outline" disabled>
                     Outline Disabled
                 </Button>

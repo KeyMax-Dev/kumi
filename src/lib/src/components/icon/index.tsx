@@ -6,7 +6,7 @@ import { createClassName } from 'lib/src/utils';
 
 const Icon = ({ className, ...props }: IconProps): JSX.Element => {
     return (
-        <IconElement {...props} className={createClassName(['icon'], className)}>
+        <IconElement {...props} className={createClassName(['icon'], className)} role="icon">
             {Icons[props.name]}
         </IconElement>
     );

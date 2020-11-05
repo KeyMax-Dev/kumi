@@ -5,7 +5,7 @@ import { IconButtonElement, OutlineButtonElement, SolidButtonElement } from './s
 import Icon from '../icon';
 import { createClassName } from 'lib/src/utils';
 
-type ButtonStyleTypes = 'solid' | 'outline' | 'icon';
+export type ButtonStyleTypes = 'solid' | 'outline' | 'icon';
 
 interface ButtonProps
     extends ThemedComponentProps,
@@ -16,46 +16,55 @@ interface ButtonProps
     children?: string;
 }
 
-const Button = ({
-    styleType = 'solid',
-    icon,
-    iconSize,
-    children,
-    className,
-    invert,
-    ...props
-}: ButtonProps): JSX.Element => {
-    const Content = (
-        <>
-            {icon && <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />}
-            {children && <span>{children}</span>}
-        </>
-    );
-
+const Button = ({ styleType = 'solid', icon, iconSize, children, className, ...props }: ButtonProps): JSX.Element => {
     switch (styleType) {
         case 'icon':
-            if (!icon) {
-                throw new Error('Icon button must have an icon');
-            }
             return (
                 <IconButtonElement
                     iconSize={iconSize}
                     {...props}
                     className={createClassName(['button', 'icon'], className)}
                 >
-                    {Content}
+                    {icon && (
+                        <Icon
+                            name={icon}
+                            width={iconSize}
+                            height={iconSize}
+                            invert={props.invert}
+                            color={props.color}
+                        />
+                    )}
+                    {children && <span role="text">{children}</span>}
                 </IconButtonElement>
             );
         case 'outline':
             return (
                 <OutlineButtonElement {...props} className={createClassName(['button', 'outline'], className)}>
-                    {Content}
+                    {icon && (
+                        <Icon
+                            name={icon}
+                            width={iconSize}
+                            height={iconSize}
+                            invert={props.invert}
+                            color={props.color}
+                        />
+                    )}
+                    {children && <span role="text">{children}</span>}
                 </OutlineButtonElement>
             );
         default:
             return (
                 <SolidButtonElement {...props} className={createClassName(['button', 'solid'], className)}>
-                    {Content}
+                    {icon && (
+                        <Icon
+                            name={icon}
+                            width={iconSize}
+                            height={iconSize}
+                            invert={!props.invert}
+                            color={props.color}
+                        />
+                    )}
+                    {children && <span role="text">{children}</span>}
                 </SolidButtonElement>
             );
     }
