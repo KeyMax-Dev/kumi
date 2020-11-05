@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+    - stable
+
+install:
+    - yarn
+
+jobs:
+    include:
+        - stage: Tests
+          script: yarn test
+        - stage: GitHub Pages Deploy
+          script: yarn deploy
