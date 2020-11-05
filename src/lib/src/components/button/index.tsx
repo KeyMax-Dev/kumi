@@ -25,6 +25,13 @@ const Button = ({
     invert,
     ...props
 }: ButtonProps): JSX.Element => {
+    const Content = (
+        <>
+            {icon && <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />}
+            {children && <span>{children}</span>}
+        </>
+    );
+
     switch (styleType) {
         case 'icon':
             if (!icon) {
@@ -36,22 +43,19 @@ const Button = ({
                     {...props}
                     className={createClassName(['button', 'icon'], className)}
                 >
-                    <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />
-                    {children && <span>{children}</span>}
+                    {Content}
                 </IconButtonElement>
             );
         case 'outline':
             return (
                 <OutlineButtonElement {...props} className={createClassName(['button', 'outline'], className)}>
-                    {icon && <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />}
-                    <span>{children}</span>
+                    {Content}
                 </OutlineButtonElement>
             );
         default:
             return (
                 <SolidButtonElement {...props} className={createClassName(['button', 'solid'], className)}>
-                    {icon && <Icon name={icon} width={iconSize} height={iconSize} invert={invert} />}
-                    <span>{children}</span>
+                    {Content}
                 </SolidButtonElement>
             );
     }
