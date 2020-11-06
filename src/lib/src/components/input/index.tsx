@@ -8,19 +8,22 @@ import {
     InputLabelElement,
     SolidInputContainer,
 } from './styles';
-import Icon from '../icon';
+import { Icon } from '../icon';
 import { createClassName } from 'lib/src/utils';
 
-type InputStyleTypes = 'downline' | 'outline' | 'solid';
+export type InputStyleTypes = 'downline' | 'outline' | 'solid';
 
-interface InputProps extends ThemedComponentProps, StyleTypedComponentProps<InputStyleTypes>, HTMLMotionProps<'input'> {
+export interface InputProps
+    extends ThemedComponentProps,
+        StyleTypedComponentProps<InputStyleTypes>,
+        HTMLMotionProps<'input'> {
     iconLeft?: string;
     iconRight?: string;
     label?: string;
     containerProps?: HTMLMotionProps<'div'>;
 }
 
-const Input = ({
+export const Input = ({
     color,
     invert,
     styleType,
@@ -75,5 +78,3 @@ const Input = ({
             );
     }
 };
-
-export default Input;

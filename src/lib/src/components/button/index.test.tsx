@@ -1,5 +1,5 @@
 import React from 'react';
-import Button, { ButtonStyleTypes } from '.';
+import { Button, ButtonStyleTypes } from '.';
 import { themedRender } from 'test/utils';
 import { cleanup } from '@testing-library/react';
 

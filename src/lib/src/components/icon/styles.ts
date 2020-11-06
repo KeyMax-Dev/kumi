@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { IconProps } from 'lib/src/types/components/icon';
+import { IconProps } from '.';
 
 export const IconElement = styled(motion.div)<IconProps>`
     width: ${({ theme, width }): string => width || theme.defaultIconSize};

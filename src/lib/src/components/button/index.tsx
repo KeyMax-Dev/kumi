@@ -2,12 +2,12 @@ import React from 'react';
 import { HTMLMotionProps } from 'framer-motion';
 import { StyleTypedComponentProps, ThemedComponentProps } from 'lib/src/types';
 import { IconButtonElement, OutlineButtonElement, SolidButtonElement } from './styles';
-import Icon from '../icon';
+import { Icon } from 'lib';
 import { createClassName } from 'lib/src/utils';
 
 export type ButtonStyleTypes = 'solid' | 'outline' | 'icon';
 
-interface ButtonProps
+export interface ButtonProps
     extends ThemedComponentProps,
         StyleTypedComponentProps<ButtonStyleTypes>,
         HTMLMotionProps<'button'> {
@@ -16,7 +16,14 @@ interface ButtonProps
     children?: string;
 }
 
-const Button = ({ styleType = 'solid', icon, iconSize, children, className, ...props }: ButtonProps): JSX.Element => {
+export const Button = ({
+    styleType = 'solid',
+    icon,
+    iconSize,
+    children,
+    className,
+    ...props
+}: ButtonProps): JSX.Element => {
     switch (styleType) {
         case 'icon':
             return (
@@ -69,5 +76,3 @@ const Button = ({ styleType = 'solid', icon, iconSize, children, className, ...p
             );
     }
 };
-
-export default Button;
