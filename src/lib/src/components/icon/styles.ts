@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IconProps } from '.';
+import { getColorOrDefault } from 'lib/src/utils';
 
 export const IconElement = styled(motion.div)<IconProps>`
     width: ${({ theme, width }): string => width || theme.defaultIconSize};
@@ -14,7 +15,6 @@ export const IconElement = styled(motion.div)<IconProps>`
         height: 100%;
     }
     path {
-        fill: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        fill: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
     }
 `;

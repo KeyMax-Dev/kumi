@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { ThemedComponentProps } from 'lib/src/types';
+import { getColorOrDefault } from 'lib/src/utils';
 import styled from 'styled-components';
 
 export const SolidButtonElement = styled(motion.button)<ThemedComponentProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme, color, invert }) =>
-        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+    background-color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
     border-radius: ${({ theme }) => theme.borderRadius};
     margin: 3px;
     padding: 15px 30px;
@@ -17,7 +17,7 @@ export const SolidButtonElement = styled(motion.button)<ThemedComponentProps>`
     transition: ${({ theme }) => theme.transitions.fast};
 
     span {
-        color: ${({ theme, color, invert }) => theme.colors[color || 'primary'][invert ? 'principal' : 'contrast']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, !invert)};
         font-size: ${({ theme }) => theme.font.button.fontSize};
         font-family: ${({ theme }) => theme.font.button.fontFamily};
         font-weight: ${({ theme }) => theme.font.button.fontWeight};
@@ -50,8 +50,7 @@ export const OutlineButtonElement = styled(motion.button)<ThemedComponentProps>`
     justify-content: center;
     align-items: center;
     background-color: transparent;
-    border: solid 2px
-        ${({ theme, color, invert }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+    border: solid 2px ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
     border-radius: ${({ theme }) => theme.borderRadius};
     margin: 3px;
     padding: 15px 30px;
@@ -60,7 +59,7 @@ export const OutlineButtonElement = styled(motion.button)<ThemedComponentProps>`
     transition: ${({ theme }) => theme.transitions.fast};
 
     span {
-        color: ${({ theme, color, invert }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
         font-size: ${({ theme }) => theme.font.button.fontSize};
         font-family: ${({ theme }) => theme.font.button.fontFamily};
         font-weight: ${({ theme }) => theme.font.button.fontWeight};
@@ -73,8 +72,7 @@ export const OutlineButtonElement = styled(motion.button)<ThemedComponentProps>`
     }
 
     :active {
-        background-color: ${({ theme, color, invert }) =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+        background-color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
     }
 
     :disabled {
@@ -104,7 +102,7 @@ export const IconButtonElement = styled(motion.button)<ThemedComponentProps & { 
 
     span {
         margin-top: 0.1rem;
-        color: ${({ theme, color, invert }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
         font-size: 0.6rem;
         font-family: ${({ theme }) => theme.font.button.fontFamily};
         font-weight: 100;
@@ -119,8 +117,7 @@ export const IconButtonElement = styled(motion.button)<ThemedComponentProps & { 
     }
 
     :active {
-        background-color: ${({ theme, color, invert }) =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+        background-color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
     }
 
     :disabled {

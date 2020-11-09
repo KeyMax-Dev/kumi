@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ThemedComponentProps } from 'lib/src/types';
-import { createClassName } from 'lib/src/utils';
+import { createClassName, getColorOrDefault } from 'lib/src/utils';
 import styled from 'styled-components';
 
 const InputContainer = styled(motion.div)<ThemedComponentProps>`
@@ -18,8 +18,7 @@ const InputContainer = styled(motion.div)<ThemedComponentProps>`
 
         path {
             transition: all ${({ theme }) => theme.transitions.fast};
-            fill: ${({ theme, color, invert }): string =>
-                theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+            fill: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
         }
     }
 
@@ -28,8 +27,7 @@ const InputContainer = styled(motion.div)<ThemedComponentProps>`
             margin: 5px 0;
 
             path {
-                fill: ${({ theme, color, invert }): string =>
-                    theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+                fill: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
             }
         }
     }
@@ -37,60 +35,46 @@ const InputContainer = styled(motion.div)<ThemedComponentProps>`
 
 export const DownlineInputContainer = styled(InputContainer)`
     background-color: transparent;
-    border-bottom: 1px solid
-        ${({ theme, color, invert }): string => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
-    color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+    border-bottom: 1px solid ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
+    color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
     &:focus-within {
-        color: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
-        border-bottom: 2px solid
-            ${({ theme, color, invert }): string => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
+        border-bottom: 2px solid ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
     }
 `;
 
 export const OutlineInputContainer = styled(InputContainer)`
     padding: 0 5px;
     background-color: transparent;
-    border: 1px solid
-        ${({ theme, color, invert }): string => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+    border: 1px solid ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
     border-radius: ${({ theme }) => theme.borderRadius};
-    color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+    color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
 
     &:focus-within {
-        border: 2px solid
-            ${({ theme, color, invert }): string => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        border: 2px solid ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
 
-        color: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
 
         ::placeholder {
-            color: ${({ theme, invert, color }) =>
-                theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+            color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
         }
     }
 `;
 
 export const SolidInputContainer = styled(InputContainer)`
     padding: 0 5px;
-    background-color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}26;
+    background-color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.15)};
 
     border-radius: ${({ theme }) => theme.borderRadius};
-    color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+    color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
 
     &:focus-within {
-        background-color: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+        background-color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
 
-        color: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
 
         ::placeholder {
-            color: ${({ theme, invert, color }) =>
-                theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+            color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
         }
     }
 `;
@@ -106,14 +90,14 @@ export const InputElement = styled(motion.input)<ThemedComponentProps>`
 
     font-family: ${({ theme }) => theme.font.input.fontFamily};
     font-size: ${({ theme }) => theme.font.input.fontSize};
-    color: ${({ theme, invert, color }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+    color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
 
     &:focus {
-        color: ${({ theme, color, invert }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
     }
 
     &::placeholder {
-        color: ${({ theme, invert, color }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
+        color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
     }
 `;
 

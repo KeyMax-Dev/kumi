@@ -18,9 +18,9 @@ describe.each<InputStyleTypes>(['solid', 'downline', 'outline'])('Input', styleT
         );
 
         getAllByRole('icon').forEach(iconElement =>
-            expect(iconElement.querySelector('path')).toHaveStyle(`fill: ${getTheme().colors[color].principal}4c`)
+            expect(iconElement.querySelector('path')).toHaveStyle(`fill: ${getTheme().colors[color].principal}4d`)
         );
-        expect(getByText(label)).toHaveStyle(`color: ${getTheme().colors[color].principal}4c`);
+        expect(getByText(label)).toHaveStyle(`color: ${getTheme().colors[color].principal}4d`);
         expect(getByRole('textbox')).toHaveStyle(`color: ${getTheme().colors[color].principal}`);
     });
 

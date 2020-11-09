@@ -27,7 +27,7 @@ const ButtonsPage = (): JSX.Element => {
             <h2>{Strings.Heading.OutlineButtons}</h2>
             <ComponentsContainer>
                 <Button styleType="outline">Outline</Button>
-                <Button invert styleType="outline" icon="cog">
+                <Button invert styleType="outline" icon="cog" color="danger">
                     Outline
                 </Button>
                 <Button styleType="outline" disabled>
