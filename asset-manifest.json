@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/kumi/static/js/main.6055f569.chunk.js",
+    "main.js.map": "/kumi/static/js/main.6055f569.chunk.js.map",
+    "runtime-main.js": "/kumi/static/js/runtime-main.e727a0ae.js",
+    "runtime-main.js.map": "/kumi/static/js/runtime-main.e727a0ae.js.map",
+    "static/js/2.84d5812a.chunk.js": "/kumi/static/js/2.84d5812a.chunk.js",
+    "static/js/2.84d5812a.chunk.js.map": "/kumi/static/js/2.84d5812a.chunk.js.map",
+    "index.html": "/kumi/index.html",
+    "precache-manifest.58611a3e8fbe33eeb1633e11e7d2415a.js": "/kumi/precache-manifest.58611a3e8fbe33eeb1633e11e7d2415a.js",
+    "service-worker.js": "/kumi/service-worker.js",
+    "static/js/2.84d5812a.chunk.js.LICENSE.txt": "/kumi/static/js/2.84d5812a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e727a0ae.js",
+    "static/js/2.84d5812a.chunk.js",
+    "static/js/main.6055f569.chunk.js"
+  ]
+}
