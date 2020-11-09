@@ -3,7 +3,7 @@ import { Button, ButtonStyleTypes } from '.';
 import { themedRender } from 'test/utils';
 import { cleanup } from '@testing-library/react';
 
-describe.each([undefined, 'outline', 'icon'] as ButtonStyleTypes[])('Default Button', styleType => {
+describe.each<ButtonStyleTypes>(['solid', 'outline', 'icon'])('Default Button', styleType => {
     afterEach(cleanup);
 
     test(`${styleType} should has a text`, () => {

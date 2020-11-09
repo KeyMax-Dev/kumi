@@ -19,7 +19,7 @@ const InputContainer = styled(motion.div)<ThemedComponentProps>`
         path {
             transition: all ${({ theme }) => theme.transitions.fast};
             fill: ${({ theme, color, invert }): string =>
-                theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+                theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
         }
     }
 
@@ -38,9 +38,9 @@ const InputContainer = styled(motion.div)<ThemedComponentProps>`
 export const DownlineInputContainer = styled(InputContainer)`
     background-color: transparent;
     border-bottom: 1px solid
-        ${({ theme, color, invert }): string => theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+        ${({ theme, color, invert }): string => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
     color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
     &:focus-within {
         color: ${({ theme, color, invert }): string =>
             theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
@@ -53,10 +53,10 @@ export const OutlineInputContainer = styled(InputContainer)`
     padding: 0 5px;
     background-color: transparent;
     border: 1px solid
-        ${({ theme, color, invert }): string => theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+        ${({ theme, color, invert }): string => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
     border-radius: ${({ theme }) => theme.borderRadius};
     color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
 
     &:focus-within {
         border: 2px solid
@@ -66,7 +66,8 @@ export const OutlineInputContainer = styled(InputContainer)`
             theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
 
         ::placeholder {
-            color: ${({ theme, invert }) => theme.colors.primary[invert ? 'contrast' : 'principal']}4c;
+            color: ${({ theme, invert, color }) =>
+                theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
         }
     }
 `;
@@ -74,21 +75,22 @@ export const OutlineInputContainer = styled(InputContainer)`
 export const SolidInputContainer = styled(InputContainer)`
     padding: 0 5px;
     background-color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}26;
+        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}26;
 
     border-radius: ${({ theme }) => theme.borderRadius};
     color: ${({ theme, color, invert }): string =>
-        theme.colors[color || 'secondary'][invert ? 'contrast' : 'principal']}4c;
+        theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
 
     &:focus-within {
         background-color: ${({ theme, color, invert }): string =>
-            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}26;
+            theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
 
         color: ${({ theme, color, invert }): string =>
             theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
 
         ::placeholder {
-            color: ${({ theme, invert }) => theme.colors.primary[invert ? 'contrast' : 'principal']}4c;
+            color: ${({ theme, invert, color }) =>
+                theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
         }
     }
 `;
@@ -104,14 +106,14 @@ export const InputElement = styled(motion.input)<ThemedComponentProps>`
 
     font-family: ${({ theme }) => theme.font.input.fontFamily};
     font-size: ${({ theme }) => theme.font.input.fontSize};
-    color: ${({ theme, invert }) => theme.colors.secondary[invert ? 'contrast' : 'principal']};
+    color: ${({ theme, invert, color }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
 
     &:focus {
         color: ${({ theme, color, invert }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']};
     }
 
     &::placeholder {
-        color: ${({ theme, invert }) => theme.colors.secondary[invert ? 'contrast' : 'principal']}4c;
+        color: ${({ theme, invert, color }) => theme.colors[color || 'primary'][invert ? 'contrast' : 'principal']}4c;
     }
 `;
 

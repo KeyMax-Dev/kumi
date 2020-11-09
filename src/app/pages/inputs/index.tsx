@@ -27,6 +27,7 @@ const InputsPage = (): JSX.Element => {
                     onChange={event => setState(event.currentTarget.value)}
                 />
                 <Input placeholder="placeholder" label="Icon Left" iconLeft="account" />
+                <Input placeholder="placeholder" label="Icon Left" iconLeft="account" color="secondary" />
                 <Input placeholder="placeholder" label="Icon Right" iconRight="account" />
                 <Input placeholder="placeholder" label="Icon Left Right" iconLeft="account" iconRight="account" />
             </ComponentsContainer>

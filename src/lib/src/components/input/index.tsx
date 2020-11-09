@@ -37,7 +37,7 @@ export const Input = ({
         <>
             {label && <InputLabelElement>{label}</InputLabelElement>}
             {iconLeft && <Icon name={iconLeft} color={color} width="25px" height="25px" />}
-            <InputElement {...props} />
+            <InputElement {...props} color={color} invert={invert} />
             {iconRight && <Icon name={iconRight} color={color} width="25px" height="25px" />}
         </>
     );
@@ -50,6 +50,7 @@ export const Input = ({
                     invert={invert}
                     {...containerProps}
                     className={createClassName(['input', 'container', 'outline'], containerProps?.className)}
+                    role="textbox-container"
                 >
                     {commonContent}
                 </OutlineInputContainer>
@@ -61,6 +62,7 @@ export const Input = ({
                     invert={invert}
                     {...containerProps}
                     className={createClassName(['input', 'container', 'solid'], containerProps?.className)}
+                    role="textbox-container"
                 >
                     {commonContent}
                 </SolidInputContainer>
@@ -72,6 +74,7 @@ export const Input = ({
                     invert={invert}
                     {...containerProps}
                     className={createClassName(['input', 'container', 'downline'], containerProps?.className)}
+                    role="textbox-container"
                 >
                     {commonContent}
                 </DownlineInputContainer>
