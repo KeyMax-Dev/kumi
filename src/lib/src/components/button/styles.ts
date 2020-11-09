@@ -43,6 +43,10 @@ export const SolidButtonElement = styled(motion.button)<ThemedComponentProps>`
             transform: none;
         }
     }
+
+    .kumi-icon {
+        margin-right: 10px;
+    }
 `;
 
 export const OutlineButtonElement = styled(motion.button)<ThemedComponentProps>`
@@ -85,6 +89,10 @@ export const OutlineButtonElement = styled(motion.button)<ThemedComponentProps>`
             background-color: transparent;
         }
     }
+
+    .kumi-icon {
+        margin-right: 10px;
+    }
 `;
 
 export const IconButtonElement = styled(motion.button)<ThemedComponentProps & { iconSize?: string }>`
@@ -101,7 +109,7 @@ export const IconButtonElement = styled(motion.button)<ThemedComponentProps & { 
     transition: ${({ theme }) => theme.transitions.fast};
 
     span {
-        margin-top: 0.1rem;
+        margin-top: 0.3rem;
         color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
         font-size: 0.6rem;
         font-family: ${({ theme }) => theme.font.button.fontFamily};
@@ -109,7 +117,7 @@ export const IconButtonElement = styled(motion.button)<ThemedComponentProps & { 
         text-align: center;
         line-height: 1;
         text-transform: uppercase;
-        max-width: calc(2 * ${({ iconSize, theme }) => iconSize || theme.defaultIconSize});
+        max-width: calc(2 * ${({ theme }) => theme.defaultIconSize});
     }
 
     :hover {

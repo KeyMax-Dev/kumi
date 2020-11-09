@@ -19,6 +19,7 @@ const ButtonsPage = (): JSX.Element => {
             <h2>{Strings.Heading.SolidButtons}</h2>
             <ComponentsContainer>
                 <Button>Solid</Button>
+                <Button color="danger">Solid Danger</Button>
                 <Button invert icon="cog">
                     Solid Invert
                 </Button>
@@ -27,7 +28,7 @@ const ButtonsPage = (): JSX.Element => {
             <h2>{Strings.Heading.OutlineButtons}</h2>
             <ComponentsContainer>
                 <Button styleType="outline">Outline</Button>
-                <Button invert styleType="outline" icon="cog" color="danger">
+                <Button styleType="outline" icon="cog" color="danger">
                     Outline
                 </Button>
                 <Button styleType="outline" disabled>
@@ -36,9 +37,15 @@ const ButtonsPage = (): JSX.Element => {
             </ComponentsContainer>
             <h2>{Strings.Heading.IconButtons}</h2>
             <ComponentsContainer>
-                <Button styleType="icon" icon="account"></Button>
+                <Button styleType="icon" icon="account" />
                 <Button styleType="icon" icon="cog">
                     Configurações
+                </Button>
+                <Button styleType="icon" icon="alert" color="danger">
+                    Alert
+                </Button>
+                <Button styleType="icon" icon="check" color="success">
+                    Check
                 </Button>
                 <Button styleType="icon" icon="account" disabled>
                     Account

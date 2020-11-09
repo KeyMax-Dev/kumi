@@ -19,7 +19,7 @@ export interface ButtonProps
 export const Button = ({
     styleType = 'solid',
     icon,
-    iconSize,
+    iconSize = '25px',
     children,
     className,
     ...props

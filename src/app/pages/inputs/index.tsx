@@ -43,6 +43,14 @@ const InputsPage = (): JSX.Element => {
                     iconLeft="account"
                     iconRight="account"
                 />
+                <Input
+                    styleType="outline"
+                    placeholder="placeholder"
+                    label="Icon Left Right"
+                    iconLeft="check"
+                    iconRight="check"
+                    color="success"
+                />
             </ComponentsContainer>
             <h2>{Strings.Heading.InputSolid}</h2>
             <ComponentsContainer>
@@ -53,8 +61,9 @@ const InputsPage = (): JSX.Element => {
                     styleType="solid"
                     placeholder="placeholder"
                     label="Icon Left Right"
-                    iconLeft="account"
-                    iconRight="account"
+                    iconLeft="alert"
+                    iconRight="alert"
+                    color="danger"
                 />
             </ComponentsContainer>
         </Page>
