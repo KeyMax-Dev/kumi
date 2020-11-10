@@ -1,18 +1,22 @@
 import { createClassName } from 'lib/src/utils';
 import React from 'react';
+import { getRailPercentage } from './slider-core';
 import { SliderActivedRailElement } from './styles';
 
 export interface SliderActivedRailProps {
     from: number;
-    width: number;
+    to: number;
+    iterations: number;
     active?: boolean;
 }
 
-export const SliderActivedRail = ({ from, width, active = false }: SliderActivedRailProps): JSX.Element => {
+export const SliderActivedRail = ({ from, to, active = false, iterations }: SliderActivedRailProps): JSX.Element => {
     return (
         <SliderActivedRailElement
-            className={createClassName(active ? ['slider', 'rail', 'actived'] : ['slider', 'rail'])}
-            style={{ left: `${from}%`, width: `${width}%` }}
+            className={createClassName(
+                active ? ['slider', 'rail', 'actived', 'active'] : ['slider', 'rail', 'actived']
+            )}
+            style={{ left: `${getRailPercentage(from, iterations)}%`, width: `${getRailPercentage(to, iterations)}%` }}
             role="slider-actived-rail"
         />
     );

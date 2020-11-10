@@ -1,21 +1,27 @@
 import { createClassName } from 'lib/src/utils';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { getRailPercentage, ScaleConfig, SliderValueType } from './slider-core';
 import { SliderTrackerElement } from './styles';
 
-export interface SliderTrackerProps {
+export interface SliderTrackerProps<T extends SliderValueType> {
     value?: number;
     active?: boolean;
+    scaleConfig: ScaleConfig<T>;
 }
 
-export const SliderTracker = ({ value = 0, active = false }: SliderTrackerProps): JSX.Element => {
+export const SliderTracker = <T extends SliderValueType>({
+    value = 0,
+    active = false,
+    scaleConfig: { scaleFunction, maxIterations },
+}: SliderTrackerProps<T>): JSX.Element => {
     return (
         <SliderTrackerElement
             className={createClassName(active ? ['slider', 'tracker', 'active'] : ['slider', 'tracker'])}
             role="slider-tracker"
             tabIndex={0}
-            style={{ left: `${value}%` }}
+            style={{ left: `${getRailPercentage(value, maxIterations)}%` }}
         >
-            <label>{value}</label>
+            <label>{scaleFunction(value)}</label>
         </SliderTrackerElement>
     );
 };

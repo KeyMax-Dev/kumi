@@ -1,24 +1,29 @@
 import { createClassName } from 'lib/src/utils';
 import React, { useEffect, useState, useRef } from 'react';
 import { SliderActivedRail } from './slider-active-rail';
-import { getNewValue } from './slider-core';
+import {
+    getSliderIterationByMouse,
+    getSliderIterationByValue,
+    SliderScaleConfig,
+    SliderValueType,
+} from './slider-core';
 import { SliderTracker } from './slider-tracker';
 import { SliderContainer, SliderRailElement } from './styles';
 
-type RangeSliderValue = [number, number];
+type RangeSliderValue<T extends SliderValueType> = [T?, T?];
 
-export interface RangeSliderProps {
-    value?: RangeSliderValue;
-    onChange?: (value: RangeSliderValue) => void;
+export interface RangeSliderProps<T extends SliderValueType = number> extends SliderScaleConfig<T> {
+    value?: RangeSliderValue<T>;
+    onChange?: (value: RangeSliderValue<T>) => void;
 }
 
-const closerTracker = (currentValue: RangeSliderValue, newValue: number): 0 | 1 => {
-    if (Math.abs(currentValue[0] - newValue) < Math.abs(currentValue[1] - newValue)) {
+const closerTracker = (iteration: [number, number], newValue: number): 0 | 1 => {
+    if (Math.abs(iteration[0] - newValue) < Math.abs(iteration[1] - newValue)) {
         return 0;
-    } else if (Math.abs(currentValue[0] - newValue) > Math.abs(currentValue[1] - newValue)) {
+    } else if (Math.abs(iteration[0] - newValue) > Math.abs(iteration[1] - newValue)) {
         return 1;
     } else {
-        if (newValue < currentValue[0]) {
+        if (newValue < iteration[0]) {
             return 0;
         } else {
             return 1;
@@ -26,22 +31,32 @@ const closerTracker = (currentValue: RangeSliderValue, newValue: number): 0 | 1 
     }
 };
 
-export const RangeSlider = ({ value = [0, 100], onChange }: RangeSliderProps): JSX.Element => {
-    const [currentValue, setCurrentValue] = useState<RangeSliderValue>(value);
+export const RangeSlider = <T extends SliderValueType>({
+    value = [undefined, undefined],
+    onChange,
+    scaleConfig,
+}: RangeSliderProps<T>): JSX.Element => {
+    const [iteration, setIteration] = useState<[number, number]>([
+        getSliderIterationByValue(scaleConfig, value![0]),
+        getSliderIterationByValue(scaleConfig, value![1]),
+    ]);
     const [isFocused, setIsFocused] = useState<[boolean, boolean]>([false, false]);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const mouseDownHandler = (event: React.MouseEvent<HTMLDivElement>): void => {
         event.preventDefault();
-        const newValue = getNewValue(event.currentTarget.getBoundingClientRect(), event.clientX);
-        console.log(closerTracker(currentValue, newValue));
+        const newValue = getSliderIterationByMouse(
+            event.currentTarget.getBoundingClientRect(),
+            event.clientX,
+            scaleConfig.maxIterations
+        );
 
-        if (closerTracker(currentValue, newValue) === 0) {
+        if (closerTracker(iteration, newValue) === 0) {
             setIsFocused([true, false]);
-            setCurrentValue([newValue, currentValue[1]]);
+            setIteration([newValue, iteration[1]]);
         } else {
             setIsFocused([false, true]);
-            setCurrentValue([currentValue[0], newValue]);
+            setIteration([iteration[0], newValue]);
         }
     };
 
@@ -49,18 +64,22 @@ export const RangeSlider = ({ value = [0, 100], onChange }: RangeSliderProps): J
         if ((!isFocused[0] && !isFocused[1]) || !containerRef.current) return;
         event.preventDefault();
 
-        const newValue = getNewValue(containerRef.current.getBoundingClientRect(), event.clientX);
+        const newValue = getSliderIterationByMouse(
+            containerRef.current.getBoundingClientRect(),
+            event.clientX,
+            scaleConfig.maxIterations
+        );
         if (isFocused[0]) {
-            if (newValue > currentValue[1]) {
-                setCurrentValue([currentValue[1], currentValue[1]]);
+            if (newValue > iteration[1]) {
+                setIteration([iteration[1], iteration[1]]);
             } else {
-                setCurrentValue([newValue, currentValue[1]]);
+                setIteration([newValue, iteration[1]]);
             }
         } else {
-            if (newValue < currentValue[0]) {
-                setCurrentValue([currentValue[0], currentValue[0]]);
+            if (newValue < iteration[0]) {
+                setIteration([iteration[0], iteration[0]]);
             } else {
-                setCurrentValue([currentValue[0], newValue]);
+                setIteration([iteration[0], newValue]);
             }
         }
     };
@@ -81,14 +100,19 @@ export const RangeSlider = ({ value = [0, 100], onChange }: RangeSliderProps): J
     }, [...isFocused]);
 
     useEffect(() => {
-        setCurrentValue(value);
-    }, [...value]);
+        if (!isFocused) {
+            setIteration([
+                getSliderIterationByValue(scaleConfig, value![0]),
+                getSliderIterationByValue(scaleConfig, value![1]),
+            ]);
+        }
+    }, [...value!]);
 
     useEffect(() => {
         if (onChange) {
-            onChange(currentValue);
+            onChange([scaleConfig.scaleFunction(iteration[0]), scaleConfig.scaleFunction(iteration[1])]);
         }
-    }, [...currentValue]);
+    }, [...iteration]);
 
     return (
         <SliderContainer
@@ -98,9 +122,13 @@ export const RangeSlider = ({ value = [0, 100], onChange }: RangeSliderProps): J
             ref={containerRef}
         >
             <SliderRailElement />
-            <SliderActivedRail from={currentValue[0]} width={currentValue[1] - currentValue[0]} />
-            <SliderTracker value={currentValue[0]} active={isFocused[0]} />
-            <SliderTracker value={currentValue[1]} active={isFocused[1]} />
+            <SliderActivedRail
+                from={iteration[0]}
+                to={iteration[1] - iteration[0]}
+                iterations={scaleConfig.maxIterations}
+            />
+            <SliderTracker value={iteration[0]} active={isFocused[0]} scaleConfig={scaleConfig} />
+            <SliderTracker value={iteration[1]} active={isFocused[1]} scaleConfig={scaleConfig} />
         </SliderContainer>
     );
 };
