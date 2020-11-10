@@ -1,6 +1,6 @@
 import { createClassName } from 'lib/src/utils';
 import React from 'react';
-import { getRailPercentage } from './slider-core';
+import { getSliderRailPercentage } from './core';
 import { SliderActivedRailElement } from './styles';
 
 export interface SliderActivedRailProps {
@@ -16,7 +16,10 @@ export const SliderActivedRail = ({ from, to, active = false, iterations }: Slid
             className={createClassName(
                 active ? ['slider', 'rail', 'actived', 'active'] : ['slider', 'rail', 'actived']
             )}
-            style={{ left: `${getRailPercentage(from, iterations)}%`, width: `${getRailPercentage(to, iterations)}%` }}
+            style={{
+                left: `${getSliderRailPercentage(from, iterations)}%`,
+                width: `${getSliderRailPercentage(to, iterations)}%`,
+            }}
             role="slider-actived-rail"
         />
     );

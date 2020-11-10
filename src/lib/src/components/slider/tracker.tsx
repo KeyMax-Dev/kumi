@@ -1,6 +1,7 @@
 import { createClassName } from 'lib/src/utils';
 import React from 'react';
-import { getRailPercentage, ScaleConfig, SliderValueType } from './slider-core';
+import { getSliderRailPercentage } from './core';
+import { ScaleConfig, SliderValueType } from './types';
 import { SliderTrackerElement } from './styles';
 
 export interface SliderTrackerProps<T extends SliderValueType> {
@@ -19,7 +20,7 @@ export const SliderTracker = <T extends SliderValueType>({
             className={createClassName(active ? ['slider', 'tracker', 'active'] : ['slider', 'tracker'])}
             role="slider-tracker"
             tabIndex={0}
-            style={{ left: `${getRailPercentage(value, maxIterations)}%` }}
+            style={{ left: `${getSliderRailPercentage(value, maxIterations)}%` }}
         >
             <label>{scaleFunction(value)}</label>
         </SliderTrackerElement>

@@ -1,13 +1,9 @@
 import { createClassName } from 'lib/src/utils';
 import React, { useEffect, useState, useRef } from 'react';
-import { SliderActivedRail } from './slider-active-rail';
-import {
-    getSliderIterationByMouse,
-    getSliderIterationByValue,
-    SliderScaleConfig,
-    SliderValueType,
-} from './slider-core';
-import { SliderTracker } from './slider-tracker';
+import { SliderActivedRail } from './active-rail';
+import { getSliderIterationByMouse, getSliderIterationByValue } from './core';
+import { SliderScaleConfig, SliderValueType } from './types';
+import { SliderTracker } from './tracker';
 import { SliderContainer, SliderRailElement } from './styles';
 
 export interface PointSliderProps<T extends SliderValueType> extends SliderScaleConfig<T> {
@@ -79,7 +75,7 @@ export const PointSlider = <T extends SliderValueType>({
 
     return (
         <SliderContainer
-            className={createClassName(['slider', 'container'])}
+            className={createClassName(['slider', 'point', 'container'])}
             role="container"
             onMouseDown={mouseDownHandler}
             ref={containerRef}

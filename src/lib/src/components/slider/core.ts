@@ -1,15 +1,4 @@
-export type SliderValueType = number | string | symbol;
-
-export type ScaleFunc<T extends SliderValueType> = (iteration: number) => T;
-
-export type ScaleConfig<T extends SliderValueType> = {
-    maxIterations: number;
-    scaleFunction: ScaleFunc<T>;
-};
-
-export interface SliderScaleConfig<T extends SliderValueType> {
-    scaleConfig: ScaleConfig<T>;
-}
+import { ScaleConfig, SliderValueType } from './types';
 
 export const getSliderIterationByMouse = (rect: DOMRect, clientX: number, maxIterations: number): number => {
     const { width, left } = rect;
@@ -23,7 +12,7 @@ export const getSliderIterationByMouse = (rect: DOMRect, clientX: number, maxIte
     return iteration;
 };
 
-export const getRailPercentage = (iteration: number, iterations: number): number => {
+export const getSliderRailPercentage = (iteration: number, iterations: number): number => {
     return (100 * iteration) / (iterations - 1);
 };
 
@@ -35,4 +24,18 @@ export const getSliderIterationByValue = <T extends SliderValueType>(
         if (func(i) === value) return i;
     }
     return 0;
+};
+
+export const getCloserTracker = (iteration: [number, number], newIteration: number): 0 | 1 => {
+    if (Math.abs(iteration[0] - newIteration) < Math.abs(iteration[1] - newIteration)) {
+        return 0;
+    } else if (Math.abs(iteration[0] - newIteration) > Math.abs(iteration[1] - newIteration)) {
+        return 1;
+    } else {
+        if (newIteration < iteration[0]) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 };

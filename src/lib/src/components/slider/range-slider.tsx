@@ -1,13 +1,9 @@
 import { createClassName } from 'lib/src/utils';
 import React, { useEffect, useState, useRef } from 'react';
-import { SliderActivedRail } from './slider-active-rail';
-import {
-    getSliderIterationByMouse,
-    getSliderIterationByValue,
-    SliderScaleConfig,
-    SliderValueType,
-} from './slider-core';
-import { SliderTracker } from './slider-tracker';
+import { SliderActivedRail } from './active-rail';
+import { getSliderIterationByMouse, getSliderIterationByValue, getCloserTracker } from './core';
+import { SliderScaleConfig, SliderValueType } from './types';
+import { SliderTracker } from './tracker';
 import { SliderContainer, SliderRailElement } from './styles';
 
 type RangeSliderValue<T extends SliderValueType> = [T?, T?];
@@ -16,20 +12,6 @@ export interface RangeSliderProps<T extends SliderValueType = number> extends Sl
     value?: RangeSliderValue<T>;
     onChange?: (value: RangeSliderValue<T>) => void;
 }
-
-const closerTracker = (iteration: [number, number], newValue: number): 0 | 1 => {
-    if (Math.abs(iteration[0] - newValue) < Math.abs(iteration[1] - newValue)) {
-        return 0;
-    } else if (Math.abs(iteration[0] - newValue) > Math.abs(iteration[1] - newValue)) {
-        return 1;
-    } else {
-        if (newValue < iteration[0]) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-};
 
 export const RangeSlider = <T extends SliderValueType>({
     value = [undefined, undefined],
@@ -51,7 +33,7 @@ export const RangeSlider = <T extends SliderValueType>({
             scaleConfig.maxIterations
         );
 
-        if (closerTracker(iteration, newValue) === 0) {
+        if (getCloserTracker(iteration, newValue) === 0) {
             setIsFocused([true, false]);
             setIteration([newValue, iteration[1]]);
         } else {
@@ -116,7 +98,7 @@ export const RangeSlider = <T extends SliderValueType>({
 
     return (
         <SliderContainer
-            className={createClassName(['slider', 'container'])}
+            className={createClassName(['slider', 'range', 'container'])}
             role="container"
             onMouseDown={mouseDownHandler}
             ref={containerRef}
