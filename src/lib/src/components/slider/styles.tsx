@@ -14,7 +14,7 @@ export const SliderContainer = styled.div`
     background-color: transparent;
 `;
 
-export const SliderTrackingRailElement = styled.div<ThemedComponentProps>`
+export const SliderRailElement = styled.div<ThemedComponentProps>`
     flex: 1;
     width: 100%;
     height: 5px;
@@ -22,8 +22,15 @@ export const SliderTrackingRailElement = styled.div<ThemedComponentProps>`
     border-radius: ${({ theme }) => theme.borderRadius};
 `;
 
+export const SliderActivedRailElement = styled.div<ThemedComponentProps>`
+    position: absolute;
+    height: 5px;
+
+    background-color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert)};
+    border-radius: ${({ theme }) => theme.borderRadius};
+`;
+
 export const SliderTrackerElement = styled.div<ThemedComponentProps>`
-    left: 0;
     position: absolute;
     width: 30px;
     height: 30px;
