@@ -1,9 +1,7 @@
 import { ScaleConfig, SliderValueType } from './types';
 
-export const getSliderIterationByMouse = (rect: DOMRect, clientX: number, maxIterations: number): number => {
-    const { width, left } = rect;
-
-    const scale = width / maxIterations;
+export const getSliderIterationByMouse = ({ width, left }: DOMRect, clientX: number, maxIterations: number): number => {
+    const scale = width / (maxIterations - 1);
     const distance = clientX - left;
 
     let iteration = Math.round(distance / scale);
@@ -20,6 +18,7 @@ export const getSliderIterationByValue = <T extends SliderValueType>(
     { maxIterations: iterations, scaleFunction: func }: ScaleConfig<T>,
     value?: T
 ): number => {
+    if (!value) return 0;
     for (let i = 0; i < iterations; i++) {
         if (func(i) === value) return i;
     }
