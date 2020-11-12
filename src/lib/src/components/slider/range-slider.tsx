@@ -104,11 +104,7 @@ export const RangeSlider = <T extends SliderValueType>({
             ref={containerRef}
         >
             <SliderRailElement />
-            <SliderActivedRail
-                from={iteration[0]}
-                to={iteration[1] - iteration[0]}
-                iterations={scaleConfig.maxIterations}
-            />
+            <SliderActivedRail from={iteration[0]} to={iteration[1]} iterations={scaleConfig.maxIterations} />
             <SliderTracker value={iteration[0]} active={isFocused[0]} scaleConfig={scaleConfig} />
             <SliderTracker value={iteration[1]} active={isFocused[1]} scaleConfig={scaleConfig} />
         </SliderContainer>

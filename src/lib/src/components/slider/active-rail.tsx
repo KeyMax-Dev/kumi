@@ -18,7 +18,7 @@ export const SliderActivedRail = ({ from, to, active = false, iterations }: Slid
             )}
             style={{
                 left: `${getSliderRailPercentage(from, iterations)}%`,
-                width: `${getSliderRailPercentage(to, iterations)}%`,
+                width: `${getSliderRailPercentage(to - from, iterations)}%`,
             }}
             role="slider-actived-rail"
         />

@@ -26,7 +26,7 @@ const SlidersPage = (): JSX.Element => {
                 onChange={newValue => setValue(newValue)}
             />
             <PointSlider value={5} scaleConfig={{ maxIterations: 10, scaleFunction: x => x }} activeHail />
-            <PointSlider value={0} activeHail scaleConfig={{ maxIterations: 10, scaleFunction: x => x }} />
+            <PointSlider value={10} scaleConfig={{ maxIterations: 10, scaleFunction: x => x + 1 }} />
             <PointSlider
                 value={SIZES[4]}
                 activeHail
