@@ -1,8 +1,14 @@
 # Key User Max Interface - KUMI
 
-This is the oficial KUMI project repository.
+[![Build Status](https://travis-ci.org/KeyMax-Dev/kumi.svg?branch=master)](https://travis-ci.org/KeyMax-Dev/kumi)
+
+## This is the oficial KUMI project repository.
 
 This project is developed by [KeyMax](https://www.keymax.com.br/) developers with the main objective of create an library of custom components to speed up the building of React projects.
+
+You can open the [Preview and Docs](https://keymax-dev.github.io/kumi).
+
+---
 
 ## Available Scripts
 
