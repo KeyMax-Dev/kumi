@@ -2,13 +2,10 @@ import { motion } from 'framer-motion';
 import { ThemedComponentProps } from 'lib/src/types';
 import { createClassName, getColorOrDefault } from 'lib/src/utils';
 import styled from 'styled-components';
+import { FormContainer } from '../form-container';
 
-const InputContainer = styled(motion.div)<ThemedComponentProps>`
-    min-width: 300px;
-    height: 50px;
-    margin: 5px;
+const InputContainer = styled(FormContainer)<ThemedComponentProps>`
     position: relative;
-    display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     transition: all ${({ theme }) => theme.transitions.fast};
