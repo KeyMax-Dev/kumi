@@ -42,13 +42,13 @@ export const RangeSlider = <T extends SliderValueType>({
         }
     };
 
-    const mouseMoveHandler = (event: MouseEvent): void => {
+    const mouseMoveHandler = (event: MouseEvent | TouchEvent): void => {
         if ((!isFocused[0] && !isFocused[1]) || !containerRef.current) return;
         event.preventDefault();
 
         const newValue = getSliderIterationByMouse(
             containerRef.current.getBoundingClientRect(),
-            event.clientX,
+            event instanceof TouchEvent ? event.touches[0].clientX : event.clientX,
             scaleConfig.maxIterations
         );
         if (isFocused[0]) {
@@ -73,11 +73,15 @@ export const RangeSlider = <T extends SliderValueType>({
     useEffect(() => {
         if (!isFocused[0] && !isFocused[1]) return;
         window.addEventListener('mousemove', mouseMoveHandler);
+        window.addEventListener('touchmove', mouseMoveHandler);
         window.addEventListener('mouseup', stopMovementHandler);
+        window.addEventListener('touchend', stopMovementHandler);
 
         return () => {
             window.removeEventListener('mousemove', mouseMoveHandler);
+            window.removeEventListener('touchmove', mouseMoveHandler);
             window.removeEventListener('mouseup', stopMovementHandler);
+            window.removeEventListener('touchend', stopMovementHandler);
         };
     }, [...isFocused]);
 

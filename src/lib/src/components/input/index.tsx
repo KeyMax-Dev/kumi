@@ -1,15 +1,10 @@
 import React from 'react';
 import { HTMLMotionProps } from 'framer-motion';
 import { StyleTypedComponentProps, ThemedComponentProps } from 'lib/src/types';
-import {
-    OutlineInputContainer,
-    DownlineInputContainer,
-    InputElement,
-    InputLabelElement,
-    SolidInputContainer,
-} from './styles';
+import { InputElement, InputLabelElement } from './styles';
 import { Icon } from '../icon';
 import { createClassName } from 'lib/src/utils';
+import { DownlineFormField, OutlineFormField, SolidFormField } from '../form-field';
 
 export type InputStyleTypes = 'downline' | 'outline' | 'solid';
 
@@ -45,39 +40,21 @@ export const Input = ({
     switch (styleType) {
         case 'outline':
             return (
-                <OutlineInputContainer
-                    color={color}
-                    invert={invert}
-                    {...containerProps}
-                    className={createClassName(['input', 'container', 'outline'], containerProps?.className)}
-                    role="textbox-container"
-                >
+                <OutlineFormField color={color} invert={invert} {...containerProps}>
                     {commonContent}
-                </OutlineInputContainer>
+                </OutlineFormField>
             );
         case 'solid':
             return (
-                <SolidInputContainer
-                    color={color}
-                    invert={invert}
-                    {...containerProps}
-                    className={createClassName(['input', 'container', 'solid'], containerProps?.className)}
-                    role="textbox-container"
-                >
+                <SolidFormField color={color} invert={invert} {...containerProps}>
                     {commonContent}
-                </SolidInputContainer>
+                </SolidFormField>
             );
         default:
             return (
-                <DownlineInputContainer
-                    color={color}
-                    invert={invert}
-                    {...containerProps}
-                    className={createClassName(['input', 'container', 'downline'], containerProps?.className)}
-                    role="textbox-container"
-                >
+                <DownlineFormField color={color} invert={invert} {...containerProps}>
                     {commonContent}
-                </DownlineInputContainer>
+                </DownlineFormField>
             );
     }
 };

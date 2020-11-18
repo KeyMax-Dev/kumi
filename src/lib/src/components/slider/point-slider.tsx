@@ -34,13 +34,14 @@ export const PointSlider = <T extends SliderValueType>({
         setIsFocused(true);
     };
 
-    const mouseMoveHandler = (event: MouseEvent) => {
+    const mouseMoveHandler = (event: MouseEvent | TouchEvent) => {
+        console.log(isFocused, containerRef);
         if (!isFocused || !containerRef.current) return;
         event.preventDefault();
         setIteration(
             getSliderIterationByMouse(
                 containerRef.current.getBoundingClientRect(),
-                event.clientX,
+                event instanceof TouchEvent ? event.touches[0].clientX : event.clientX,
                 scaleConfig.maxIterations
             )
         );
@@ -53,11 +54,15 @@ export const PointSlider = <T extends SliderValueType>({
     useEffect(() => {
         if (!isFocused) return;
         window.addEventListener('mousemove', mouseMoveHandler);
+        window.addEventListener('touchmove', mouseMoveHandler);
         window.addEventListener('mouseup', stopMovementHandler);
+        window.addEventListener('touchend', stopMovementHandler);
 
         return () => {
             window.removeEventListener('mousemove', mouseMoveHandler);
+            window.removeEventListener('touchmove', mouseMoveHandler);
             window.removeEventListener('mouseup', stopMovementHandler);
+            window.removeEventListener('touchend', stopMovementHandler);
         };
     });
 

@@ -1,9 +1,9 @@
 import { ThemedComponentProps } from 'lib/src/types';
 import { getColorOrDefault } from 'lib/src/utils';
 import styled from 'styled-components';
-import { FormContainer } from '../form-container';
+import { FormField } from '../form-field';
 
-export const SliderContainer = styled(FormContainer)`
+export const SliderContainer = styled(FormField)`
     margin-top: 20px;
     position: relative;
     justify-content: center;
