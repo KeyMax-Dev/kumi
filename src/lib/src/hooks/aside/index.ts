@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { createContainer, updateContainer } from './core';
 
 export interface AsideComponent {
     component: false | React.ReactPortal;
-    setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
-    display: boolean;
+    displayState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
 export interface AsideProps {
@@ -13,46 +13,11 @@ export interface AsideProps {
     backdropClose?: boolean;
 }
 
-const createContainer = (): HTMLElement => {
-    const element = document.createElement('aside');
-
-    element.style.position = 'fixed';
-    element.style.display = 'flex';
-    element.style.flexDirection = 'column';
-    element.style.justifyContent = 'center';
-    element.style.alignItems = 'center';
-
-    return element;
-};
-
 let container = createContainer();
 
-const updateContainer = (container: HTMLElement, from: HTMLElement): HTMLElement => {
-    console.log('update');
-    const fromBounding = from.getBoundingClientRect();
-    const actualBounding = container.getBoundingClientRect();
-
-    if (actualBounding.width && actualBounding.width > fromBounding.width) {
-        container.style.left = `${fromBounding.left - (actualBounding.width - fromBounding.width) / 2}px`;
-    } else {
-        container.style.left = `${fromBounding.left}px`;
-    }
-    container.style.top = `${fromBounding.top}px`;
-    container.style.minWidth = `${fromBounding.width}px`;
-
-    if (actualBounding.left < 10) container.style.left = '10px';
-    if (actualBounding.right > window.innerWidth - 10)
-        container.style.width = `${window.innerWidth - actualBounding.left - 10}px`;
-    else container.style.width = '';
-    if (actualBounding.bottom > window.innerHeight - 10)
-        container.style.height = `${window.innerHeight - actualBounding.top - 10}px`;
-    else container.style.height = '';
-
-    return container;
-};
-
-export const useAside = ({ children, fromElement, backdropClose = true }: AsideProps): AsideComponent => {
+export const useAside = ({ children, fromElement = null, backdropClose = true }: AsideProps): AsideComponent => {
     const [display, setDisplay] = useState<boolean>(false);
+    const [from, setFrom] = useState<HTMLElement | null>(fromElement);
 
     const appendNode = (): void => {
         if (document.body.contains(container)) {
@@ -60,42 +25,38 @@ export const useAside = ({ children, fromElement, backdropClose = true }: AsideP
         } else {
             document.body.appendChild(container);
         }
-        document.body.style.overflow = 'hidden';
-        if (fromElement) {
-            updateContainer(container, fromElement);
-        }
+        // document.body.style.overflow = 'hidden';
     };
 
     const removeNode = (): void => {
         if (document.body.contains(container)) {
             document.body.removeChild(container);
         }
-        document.body.style.overflow = '';
+        // document.body.style.overflow = '';
     };
 
+    // Handle display enable change
+    // Handle fromElement update
     useEffect(() => {
+        container = updateContainer(container, fromElement);
+        setFrom(fromElement);
+
         if (display) {
             appendNode();
         } else {
             removeNode();
         }
-    }, [display]);
-
-    useEffect(() => {
-        if (fromElement) {
-            container = updateContainer(container, fromElement);
-        }
     }, [fromElement, display]);
 
+    // Handle window resize
     useEffect(() => {
-        if (fromElement) {
-            const updateListener = () => updateContainer(container, fromElement);
+        const updateListener = () => updateContainer(container, from);
 
-            window.addEventListener('resize', updateListener);
-            return () => window.removeEventListener('resize', updateListener);
-        }
+        window.addEventListener('resize', updateListener);
+        return () => window.removeEventListener('resize', updateListener);
     });
 
+    // Handle close by clicking out
     useEffect(() => {
         if (display && backdropClose) {
             const clickListener = (event: MouseEvent): void => {
@@ -112,7 +73,6 @@ export const useAside = ({ children, fromElement, backdropClose = true }: AsideP
 
     return {
         component: display && ReactDOM.createPortal(children, container),
-        setDisplay,
-        display,
+        displayState: [display, setDisplay],
     };
 };

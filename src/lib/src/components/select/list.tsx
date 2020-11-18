@@ -11,7 +11,10 @@ export const SelectList = <T extends any>({ list, onSelect }: SelectListProps<T>
     return (
         <SelectListContainer>
             {list.map(item => (
-                <SelectListElement onClick={() => onSelect!(item)}>{`${item}`}</SelectListElement>
+                <SelectListElement
+                    key={Math.round(100000 * Math.random())}
+                    onClick={() => onSelect!(item)}
+                >{`${item}`}</SelectListElement>
             ))}
         </SelectListContainer>
     );

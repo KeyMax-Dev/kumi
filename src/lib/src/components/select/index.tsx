@@ -6,27 +6,40 @@ import { Input, InputStyleTypes } from '../input';
 import { SelectList } from './list';
 
 export interface SelectProps<T = any> extends ThemedComponentProps, StyleTypedComponentProps<InputStyleTypes> {
-    iconLeft?: string;
-    iconRight?: string;
     label?: string;
-    containerProps?: HTMLMotionProps<'div'>;
     list: T[];
     value?: T;
+    onSelect?: (selected: T) => void;
+    placeholder?: string;
 }
 
-export const Select = <T extends any = any>({ list, value }: SelectProps): JSX.Element => {
+export const Select = <T extends any = any>({
+    label,
+    list,
+    value,
+    styleType,
+    color,
+    invert,
+    onSelect,
+    placeholder,
+}: SelectProps<T>): JSX.Element => {
     const ref = useRef<HTMLDivElement>(null);
 
-    const [currentValue, setCurrentValue] = useState<T>(value);
+    const [currentValue, setCurrentValue] = useState<T | undefined>(value);
 
     const selectHandler = (item: T): void => {
         setCurrentValue(item);
-        selectList.setDisplay(false);
+        setDisplaySelectList(false);
+        if (onSelect) onSelect(item);
     };
 
-    const selectList = useAside({
+    const {
+        component: selectList,
+        displayState: [, setDisplaySelectList],
+    } = useAside({
         children: <SelectList<T> list={list} onSelect={selectHandler} />,
         fromElement: ref.current,
+        backdropClose: true,
     });
 
     useEffect(() => {
@@ -34,9 +47,18 @@ export const Select = <T extends any = any>({ list, value }: SelectProps): JSX.E
     }, [value]);
 
     return (
-        <div ref={ref} onMouseDown={() => selectList.setDisplay(true)}>
-            <Input iconRight="chevronDown" value={currentValue ? `${currentValue}` : 'Select...'} />
-            {selectList.component}
+        <div ref={ref} onMouseDown={() => setDisplaySelectList(true)}>
+            <Input
+                iconRight="chevronDown"
+                defaultValue={currentValue ? `${currentValue}` : ''}
+                styleType={styleType}
+                contentEditable={false}
+                color={color}
+                invert={invert}
+                label={label}
+                placeholder={placeholder}
+            />
+            {selectList}
         </div>
     );
 };

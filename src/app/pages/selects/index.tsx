@@ -15,6 +15,8 @@ const SelectsPage = (): JSX.Element => {
         <Page>
             <h1>{Strings.Heading.MainTitle}</h1>
             <Select list={SELECT_LIST} />
+            <Select list={SELECT_LIST} styleType="outline" />
+            <Select list={SELECT_LIST} styleType="solid" />
         </Page>
     );
 };
