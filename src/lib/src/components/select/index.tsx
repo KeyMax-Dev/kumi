@@ -2,7 +2,10 @@ import { HTMLMotionProps } from 'framer-motion';
 import { useAside } from 'lib/src/hooks';
 import { StyleTypedComponentProps, ThemedComponentProps } from 'lib/src/types';
 import React, { useEffect, useRef, useState } from 'react';
+import { DownlineFormField, FormField, FormFieldLabel, OutlineFormField, SolidFormField } from '../form-field';
+import { Icon } from '../icon';
 import { Input, InputStyleTypes } from '../input';
+import { InputElement } from '../input/styles';
 import { SelectList } from './list';
 
 export interface SelectProps<T = any> extends ThemedComponentProps, StyleTypedComponentProps<InputStyleTypes> {
@@ -35,9 +38,9 @@ export const Select = <T extends any = any>({
 
     const {
         component: selectList,
-        displayState: [, setDisplaySelectList],
+        displayState: [displaySelectList, setDisplaySelectList],
     } = useAside({
-        children: <SelectList<T> list={list} onSelect={selectHandler} />,
+        children: <SelectList<T> color={color} invert={invert} list={list} onSelect={selectHandler} />,
         fromElement: ref.current,
         backdropClose: true,
     });
@@ -46,19 +49,38 @@ export const Select = <T extends any = any>({
         setCurrentValue(value);
     }, [value]);
 
+    let Container: typeof FormField;
+
+    switch (styleType) {
+        case 'solid':
+            Container = SolidFormField;
+            break;
+        case 'outline':
+            Container = OutlineFormField;
+            break;
+        default:
+            Container = DownlineFormField;
+    }
+
     return (
-        <div ref={ref} onMouseDown={() => setDisplaySelectList(true)}>
-            <Input
-                iconRight="chevronDown"
-                defaultValue={currentValue ? `${currentValue}` : ''}
-                styleType={styleType}
-                contentEditable={false}
+        <Container color={color} invert={invert} ref={ref} onMouseDown={() => setDisplaySelectList(true)}>
+            {label && <FormFieldLabel>{label}</FormFieldLabel>}
+            <InputElement
                 color={color}
                 invert={invert}
-                label={label}
+                disabled={true}
+                defaultValue={currentValue ? `${currentValue}` : ''}
                 placeholder={placeholder}
             />
+            <Icon
+                name="chevronDown"
+                width="25px"
+                height="25px"
+                color={color}
+                invert={invert}
+                animate={{ rotate: displaySelectList ? 180 : 0 }}
+            />
             {selectList}
-        </div>
+        </Container>
     );
 };

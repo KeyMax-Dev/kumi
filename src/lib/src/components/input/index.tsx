@@ -1,10 +1,9 @@
 import React from 'react';
 import { HTMLMotionProps } from 'framer-motion';
 import { StyleTypedComponentProps, ThemedComponentProps } from 'lib/src/types';
-import { InputElement, InputLabelElement } from './styles';
+import { InputElement } from './styles';
 import { Icon } from '../icon';
-import { createClassName } from 'lib/src/utils';
-import { DownlineFormField, OutlineFormField, SolidFormField } from '../form-field';
+import { DownlineFormField, FormField, FormFieldLabel, OutlineFormField, SolidFormField } from '../form-field';
 
 export type InputStyleTypes = 'downline' | 'outline' | 'solid';
 
@@ -28,33 +27,25 @@ export const Input = ({
     label,
     ...props
 }: InputProps): JSX.Element => {
-    const commonContent: JSX.Element = (
-        <>
-            {label && <InputLabelElement>{label}</InputLabelElement>}
-            {iconLeft && <Icon name={iconLeft} color={color} width="25px" height="25px" />}
-            <InputElement {...props} color={color} invert={invert} />
-            {iconRight && <Icon name={iconRight} color={color} width="25px" height="25px" />}
-        </>
-    );
+    let Container: typeof FormField;
 
     switch (styleType) {
         case 'outline':
-            return (
-                <OutlineFormField color={color} invert={invert} {...containerProps}>
-                    {commonContent}
-                </OutlineFormField>
-            );
+            Container = OutlineFormField;
+            break;
         case 'solid':
-            return (
-                <SolidFormField color={color} invert={invert} {...containerProps}>
-                    {commonContent}
-                </SolidFormField>
-            );
+            Container = SolidFormField;
+            break;
         default:
-            return (
-                <DownlineFormField color={color} invert={invert} {...containerProps}>
-                    {commonContent}
-                </DownlineFormField>
-            );
+            Container = DownlineFormField;
     }
+
+    return (
+        <Container color={color} invert={invert} {...containerProps}>
+            {label && <FormFieldLabel>{label}</FormFieldLabel>}
+            {iconLeft && <Icon name={iconLeft} color={color} width="25px" height="25px" />}
+            <InputElement {...props} color={color} invert={invert} />
+            {iconRight && <Icon name={iconRight} color={color} width="25px" height="25px" />}
+        </Container>
+    );
 };

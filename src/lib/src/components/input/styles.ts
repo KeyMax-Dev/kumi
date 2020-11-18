@@ -24,14 +24,3 @@ export const InputElement = styled(motion.input)<ThemedComponentProps>`
         color: ${({ theme, color, invert }) => getColorOrDefault(theme, color, invert, 0.3)};
     }
 `;
-
-export const InputLabelElement = styled.label`
-    position: absolute;
-    text-align: center;
-    text-transform: uppercase;
-    top: 3px;
-    left: 0;
-    right: 0;
-    font-size: 0.8rem;
-    font-family: ${({ theme }) => theme.font.input.fontFamily};
-`;

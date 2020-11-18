@@ -3,6 +3,7 @@ import React from 'react';
 import {
     DownlineFormFieldContainer,
     FormFieldContainer,
+    FormFieldLabelElement,
     OutlineFormFieldContainer,
     SolidFormFieldContainer,
 } from './styles';
@@ -56,6 +57,21 @@ export const SolidFormField = React.forwardRef<unknown, FormFieldProps>(
                 ref={ref}
                 className={createClassName(['form', 'field', 'solid'], props?.className)}
                 role="form-field-container"
+            />
+        );
+    }
+);
+
+type FormFieldLabelProps = React.ComponentPropsWithRef<typeof FormFieldLabelElement>;
+
+export const FormFieldLabel = React.forwardRef<unknown, FormFieldLabelProps>(
+    (props, ref): JSX.Element => {
+        return (
+            <FormFieldLabelElement
+                {...props}
+                ref={ref}
+                className={createClassName(['from', 'field', 'label'])}
+                role="form-field-label"
             />
         );
     }

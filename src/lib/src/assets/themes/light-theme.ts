@@ -4,7 +4,7 @@ const LightTheme: Theme = {
     colors: {
         primary: { principal: '#1eca57', contrast: '#FFFFFF' },
         secondary: { principal: '#000000', contrast: '#FFFFFF' },
-        danger: { principal: '#D40000', contrast: '#FFFFFF' },
+        danger: { principal: '#D40000', contrast: '#000000' },
         success: { principal: '#00D415', contrast: '#000000' },
     },
     defaultIconSize: '40px',
