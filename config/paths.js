@@ -64,6 +64,8 @@ module.exports = {
     appNodeModules: resolveApp('node_modules'),
     publicUrlOrPath,
     libSrc: resolveApp('lib'),
+    libBuild: resolveApp('build/lib'),
+    libIndexJs: resolveModule(resolveApp, 'src/lib/index'),
 };
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
