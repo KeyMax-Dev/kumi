@@ -9,5 +9,6 @@ export interface AsideController {
 
 export interface AsideProps {
     fromElement?: HTMLElement | null;
+    enableOverlay?: boolean;
     wrappers?: AsideWrapper[];
 }

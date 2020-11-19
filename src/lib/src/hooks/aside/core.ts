@@ -1,3 +1,6 @@
+import { getGlobalTheme } from 'lib/src/assets';
+import { createClassName, getColorOrDefault } from 'lib/src/utils';
+
 export const createContainer = (): HTMLElement => {
     const element = document.createElement('aside');
 
@@ -6,6 +9,21 @@ export const createContainer = (): HTMLElement => {
     element.style.flexDirection = 'column';
     element.style.justifyContent = 'center';
     element.style.alignItems = 'center';
+
+    return element;
+};
+
+export const createOverlay = (): HTMLElement => {
+    const element = document.createElement('aside');
+
+    element.setAttribute('role', 'overlay');
+    element.setAttribute('class', createClassName(['overlay']));
+    element.style.position = 'fixed';
+    element.style.top = '0';
+    element.style.right = '0';
+    element.style.bottom = '0';
+    element.style.left = '0';
+    element.style.backgroundColor = getColorOrDefault(getGlobalTheme(), 'primary', true, 0.8);
 
     return element;
 };
@@ -31,8 +49,7 @@ const updateContainerFrom = (container: HTMLElement, from: HTMLElement): HTMLEle
         container.style.height = `${window.innerHeight - actualBounding.top - 10}px`;
     else container.style.height = '';
 
-    container.style.right = '';
-    container.style.bottom = '';
+    container.style.transform = '';
 
     return container;
 };
@@ -40,10 +57,10 @@ const updateContainerFrom = (container: HTMLElement, from: HTMLElement): HTMLEle
 const updateContainerAlone = (container: HTMLElement): HTMLElement => {
     container.style.width = '';
     container.style.height = '';
-    container.style.top = '0';
-    container.style.right = '0';
-    container.style.bottom = '0';
-    container.style.left = '0';
+    container.style.top = '50%';
+    container.style.left = '50%';
+    container.style.transform = 'translate(-50%, -50%)';
+    container.style.margin = 'auto';
 
     return container;
 };

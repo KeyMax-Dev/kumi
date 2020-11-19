@@ -8,7 +8,12 @@ export const Modal: AsideWrapper = ({ children, displayState: [display, setDispl
     return (
         <ModalContainer className={createClassName(['modal'])}>
             {children}
-            <Button styleType="icon" icon="close" onClick={() => setDisplay(false)} />
+            <Button
+                styleType="icon"
+                icon="close"
+                onClick={() => setDisplay(false)}
+                className={createClassName(['modal', 'close'])}
+            />
         </ModalContainer>
     );
 };

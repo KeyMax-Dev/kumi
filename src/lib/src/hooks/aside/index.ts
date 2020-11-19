@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { createContainer, updateContainer } from './core';
+import { createContainer, createOverlay, updateContainer } from './core';
 import { AsideController, AsideProps } from './types';
 
 let container = createContainer();
+let overlay = createOverlay();
 
 export const useAside = (
     children: React.ReactNode,
-    { fromElement = null, wrappers = [] }: AsideProps = {
+    { fromElement = null, wrappers = [], enableOverlay = true }: AsideProps = {
         fromElement: null,
         wrappers: [],
+        enableOverlay: true,
     }
 ): AsideController => {
     const [display, setDisplay] = useState<boolean>(false);
@@ -24,18 +26,34 @@ export const useAside = (
     };
 
     const appendNode = (): void => {
+        if (enableOverlay) {
+            if (document.body.contains(overlay)) {
+                document.body.replaceChild(overlay, overlay);
+            } else {
+                document.body.appendChild(overlay);
+            }
+        }
+
         if (document.body.contains(container)) {
             document.body.replaceChild(container, container);
         } else {
             document.body.appendChild(container);
         }
+
         // document.body.style.overflow = 'hidden';
     };
 
     const removeNode = (): void => {
+        if (enableOverlay) {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }
+
         if (document.body.contains(container)) {
             document.body.removeChild(container);
         }
+
         // document.body.style.overflow = '';
     };
 

@@ -9,11 +9,24 @@ const Strings = {
     },
 };
 
+const LoremModal = (): JSX.Element => {
+    return (
+        <div>
+            <h1>I'm a modal</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo reprehenderit et deserunt inventore,
+                exercitationem eum consequuntur unde repellendus perspiciatis deleniti veritatis laboriosam quas, ipsam
+                consectetur, minima sequi necessitatibus nisi optio?
+            </p>
+        </div>
+    );
+};
+
 const ModalsPage = (): JSX.Element => {
     const {
         component: modal,
         displayState: [display, setDisplay],
-    } = useAside(<h1>I'm a modal</h1>, { wrappers: [Modal] });
+    } = useAside(<LoremModal />, { wrappers: [Modal] });
 
     return (
         <Page>
