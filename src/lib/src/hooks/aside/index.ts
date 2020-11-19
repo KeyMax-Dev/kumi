@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer, updateContainer } from './core';
-
-export interface AsideComponent {
-    component: false | React.ReactPortal;
-    displayState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
-}
-
-export interface AsideProps {
-    children: React.ReactNode;
-    fromElement?: HTMLElement | null;
-    backdropClose?: boolean;
-}
+import { AsideController, AsideProps } from './types';
 
 let container = createContainer();
 
-export const useAside = ({ children, fromElement = null, backdropClose = true }: AsideProps): AsideComponent => {
+export const useAside = (
+    children: React.ReactNode,
+    { fromElement = null, wrappers = [] }: AsideProps = {
+        fromElement: null,
+        wrappers: [],
+    }
+): AsideController => {
     const [display, setDisplay] = useState<boolean>(false);
     const [from, setFrom] = useState<HTMLElement | null>(fromElement);
+
+    const wrapChildren = (): React.ReactNode => {
+        return wrappers.reduce(
+            (previous, current) =>
+                React.createElement(current, { children: previous, displayState: [display, setDisplay] }),
+            children
+        );
+    };
 
     const appendNode = (): void => {
         if (document.body.contains(container)) {
@@ -58,7 +62,7 @@ export const useAside = ({ children, fromElement = null, backdropClose = true }:
 
     // Handle close by clicking out
     useEffect(() => {
-        if (display && backdropClose) {
+        if (display) {
             const clickListener = (event: MouseEvent): void => {
                 event.preventDefault();
                 if (!container.contains(event.target as HTMLElement)) {
@@ -72,7 +76,10 @@ export const useAside = ({ children, fromElement = null, backdropClose = true }:
     }, [display]);
 
     return {
-        component: display && ReactDOM.createPortal(children, container),
+        component: display && ReactDOM.createPortal(wrapChildren(), container),
         displayState: [display, setDisplay],
     };
 };
+
+export * from './types';
+export * from './wrappers';

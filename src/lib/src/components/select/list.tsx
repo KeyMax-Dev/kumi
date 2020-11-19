@@ -1,4 +1,3 @@
-import { AsideComponent } from 'lib/src/hooks';
 import { ThemedComponentProps } from 'lib/src/types';
 import React from 'react';
 import { SelectListContainer, SelectListElement } from './styles';

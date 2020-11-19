@@ -39,10 +39,8 @@ export const Select = <T extends any = any>({
     const {
         component: selectList,
         displayState: [displaySelectList, setDisplaySelectList],
-    } = useAside({
-        children: <SelectList<T> color={color} invert={invert} list={list} onSelect={selectHandler} />,
+    } = useAside(<SelectList<T> color={color} invert={invert} list={list} onSelect={selectHandler} />, {
         fromElement: ref.current,
-        backdropClose: true,
     });
 
     useEffect(() => {

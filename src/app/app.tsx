@@ -7,6 +7,7 @@ import ButtonsPage from './pages/buttons';
 import HomePage from './pages/home';
 import IconsPage from './pages/icons';
 import InputsPage from './pages/inputs';
+import ModalsPage from './pages/modals';
 import SelectsPage from './pages/selects';
 import SlidersPage from './pages/sliders';
 import { RouterPaths } from './utils/constants';
@@ -25,6 +26,7 @@ const App = (): JSX.Element => {
                     <Route component={InputsPage} path={RouterPaths.Inputs.path} />
                     <Route component={SlidersPage} path={RouterPaths.Sliders.path} />
                     <Route component={SelectsPage} path={RouterPaths.Selects.path} />
+                    <Route component={ModalsPage} path={RouterPaths.Modals.path} />
                 </Switch>
             </Main>
         </HashRouter>

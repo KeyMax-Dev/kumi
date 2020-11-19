@@ -1,6 +1,6 @@
 import RouterPath from 'app/types/router-path';
 
-type RouterPathKeys = 'Home' | 'Icons' | 'Buttons' | 'Inputs' | 'Sliders' | 'Selects';
+type RouterPathKeys = 'Home' | 'Icons' | 'Buttons' | 'Inputs' | 'Sliders' | 'Selects' | 'Modals';
 
 export const RouterPaths: { [key in RouterPathKeys]: RouterPath } = {
     Home: { name: 'Home', path: '/' },
@@ -9,4 +9,5 @@ export const RouterPaths: { [key in RouterPathKeys]: RouterPath } = {
     Inputs: { name: 'Inputs', path: '/inputs' },
     Sliders: { name: 'Sliders', path: '/sliders' },
     Selects: { name: 'Selects', path: '/selects' },
+    Modals: { name: 'Modals', path: '/modals' },
 };
