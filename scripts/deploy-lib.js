@@ -25,7 +25,10 @@ function deploy() {
     });
 }
 
+console.log('Running lib deploy:');
+console.log('Starting build...');
 build()
+    .then(() => Promise.resolve(console.log('Build done!\nStarting deploy...')))
     .then(deploy)
-    .then(() => console.log('Successful deployed!'))
+    .then(() => Promise.resolve(console.log('Successful deployed!')))
     .catch(err => console.error(err));
