@@ -2,13 +2,21 @@ const rollup = require('rollup');
 const paths = require('../config/paths');
 const pluginTypescript = require('@rollup/plugin-typescript');
 
-// see below for details on the options
 const inputOptions = {
     input: paths.libIndexJs,
-    plugins: [pluginTypescript()],
+    plugins: [pluginTypescript({ tsconfig: paths.appTsConfig })],
 };
+
 const outputOptions = {
     dir: paths.libBuild,
+    format: 'cjs',
+    sourcemap: true,
+    compact: true,
+    globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'styled-components': 'styled',
+    },
 };
 
 async function build() {

@@ -2,7 +2,7 @@ import React from 'react';
 import { HTMLMotionProps } from 'framer-motion';
 import { StyleTypedComponentProps, ThemedComponentProps } from 'lib/src/types';
 import { IconButtonElement, OutlineButtonElement, SolidButtonElement } from './styles';
-import { Icon } from 'lib';
+import { Icon } from 'lib/src/components/icon';
 import { createClassName } from 'lib/src/utils';
 
 export type ButtonStyleTypes = 'solid' | 'outline' | 'icon';
